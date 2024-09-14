@@ -1,0 +1,153 @@
+---
+title: const-ROUTES
+description: Configuring Routes using const-ROUTES.
+---
+
+The `ROUTES` constant in `lib/routes-config.ts` defines the structure of your site's navigation and routing. It determines how different sections and pages are organized and accessed. Here’s how to configure and customize the ROUTES constant:
+
+## Basic Structure
+
+The `ROUTES` constant is an array of route objects. Each object represents a section in your documentation and can contain nested items. Here’s an example:
+
+```jsx
+export const ROUTES: EachRoute[] = [
+  {
+    title: "Getting Started",
+    href: "/getting-started",
+    noLink: true,
+    items: [
+      { title: "Introduction", href: "/introduction" },
+      {
+        title: "Installation",
+        href: "/installation",
+        items: [
+          { title: "Laravel", href: "/laravel" },
+          { title: "React", href: "/react" },
+          { title: "Gatsby", href: "/gatsby" },
+        ],
+      },
+      { title: "Quick Start Guide", href: "/quick-start-guide" },
+      {
+        title: "Project Structure",
+        href: "/project-structure",
+        items: [
+          { title: "Layouts", href: "/layouts" },
+          { title: "Integrations", href: "/integrations" },
+          {
+            title: "Manual",
+            href: "/manual",
+            items: [
+              { title: "JavaScript", href: "/javascript" },
+              { title: "Typescript", href: "/typescript" },
+              { title: "Golang", href: "/golang" },
+            ],
+          },
+        ],
+      },
+      { title: "Changelog", href: "/changelog" },
+      {
+        title: "FAQ",
+        href: "/faq",
+      },
+    ],
+  },
+  {
+    title: "Server Actions",
+    href: "/server-actions",
+    noLink: true,
+    items: [
+      { title: "getSession", href: "/getSession" },
+      { title: "getToken", href: "/getToken" },
+      { title: "getRole", href: "/getRole" },
+    ],
+  },
+  {
+    title: "React Hooks",
+    href: "/react-hooks",
+    noLink: true,
+    items: [
+      { title: "useSession", href: "/use-session" },
+      { title: "useFetch", href: "/use-fetch" },
+      { title: "useAuth", href: "/use-auth" },
+      { title: "useProduct", href: "/use-product" },
+      { title: "useOrder", href: "/use-order" },
+      { title: "useCart", href: "/use-cart" },
+      { title: "usePayment", href: "/use-payment" },
+      { title: "useShipping", href: "/use-shipping" },
+      { title: "useNotification", href: "/use-notification" },
+      { title: "useReview", href: "/use-review" },
+      { title: "useInventory", href: "/use-inventory" },
+      { title: "useUser", href: "/use-user" },
+      { title: "useSettings", href: "/use-settings" },
+      { title: "useAnalytics", href: "/use-analytics" },
+      { title: "useTheme", href: "/use-theme" },
+      { title: "useRouter", href: "/use-router" },
+      { title: "useData", href: "/use-data" },
+    ],
+  },
+];
+```
+
+## Route Configuration
+
+1. **Top-Level Sections**: Each object in the `ROUTES` array represents a top-level section in your documentation. For example, the "Getting Started" and "Site Data" sections are top-level entries.
+   - **title**: The display name of the section.
+   - **href**: The URL path for the section. If noLink is true, this section will not have a direct link, serving as a heading for nested items.
+   - **noLink**: When set to true, the section is used as a heading and does not have a direct link.
+  
+ 2. **Nested Items**: Each section can contain an items array, which lists the individual pages or subsections. Each item has:
+   - **title**: The title of the page or subsection.
+   - **href**: The URL path for the page.
+
+## Customizing the Routes
+
+1. **Add New Sections**: To add a new top-level section, insert a new object into the `ROUTES` array. Define its title, href, and items as needed.
+
+```jsx
+{
+  title: "New Section",
+  href: "/new-section",
+  noLink: true,
+  items: [
+    { title: "Subpage 1", href: "/subpage-1" },
+    { title: "Subpage 2", href: "/subpage-2" },
+  ],
+},
+```
+
+2. **Update Existing Sections**: Modify the `title` and `href` properties of existing sections and items to reflect the current structure and naming of your documentation.
+3. **Remove Sections**: To remove a section or page, simply delete the corresponding object or item from the `ROUTES` array.
+
+## Example Configuration
+
+Here’s an example of how the `ROUTES` constant might look with customized sections:
+
+```jsx
+export const ROUTES: EachRoute[] = [
+  {
+    title: "Introduction",
+    href: "/introduction",
+    noLink: false,
+  },
+  {
+    title: "Documentation",
+    href: "/docs",
+    noLink: true,
+    items: [
+      { title: "Getting Started", href: "/docs/getting-started" },
+      { title: "API Reference", href: "/docs/api-reference" },
+    ],
+  },
+  {
+    title: "Support",
+    href: "/support",
+    noLink: true,
+    items: [
+      { title: "FAQ", href: "/support/faq" },
+      { title: "Contact Us", href: "/support/contact" },
+    ],
+  },
+];
+```
+
+This configuration allows you to organize your documentation into clear, navigable sections and pages, ensuring users can easily find and access the information they need.
