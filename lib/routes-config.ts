@@ -84,7 +84,7 @@ const v3_5_9_ROUTES: EachRoute[] = [
   },
 ];
 
-const v1_2_2_ROUTES: EachRoute[] = [
+const v1_X_ROUTES: EachRoute[] = [
   {
     title: "Getting Started",
     href: "/getting-started",
@@ -222,8 +222,8 @@ export function getRoutesFlatten(v: Version) {
 export function getRoutesForVersion(v: Version) {
   // Add accordingly
   switch (v) {
-    case "v1.2.2":
-      return v1_2_2_ROUTES;
+    case "v1.x":
+      return v1_X_ROUTES;
     case "v2.3.6":
       return v2_3_6_ROUTES;
     case "v3.5.9":
