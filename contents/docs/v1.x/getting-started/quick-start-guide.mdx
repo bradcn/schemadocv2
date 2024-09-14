@@ -1,0 +1,53 @@
+---
+title: Quick Start Guide
+description: This guide will help you get started with your new Schema doc app.
+---
+
+## Project Structure
+
+Your Schema Doc project will have the following structure:
+
+```plaintext
+schemadoc
+├── app
+├── components
+├── content
+│   ├── docs
+│   │   └── [Your Documentation Files].mdx
+│   └── blog
+│       └── [Your Blog Posts].mdx
+├── lib
+│   ├── site-config.js
+│   └── routes-config.ts
+└── package.json
+```
+
+## Customizing Your Site
+
+### 1. Editing Content
+
+- **Docs**: Modify or add new documentation files in the `content/docs` folder. You can create subfolders to organize your content further.
+- **Blog**: Add or update blog posts in the `content/blog` folder.
+
+### 2. Configuring Routes
+
+Edit the `lib/routes-config.ts` file to customize the pages and their names. This file controls how different sections of your site are routed.
+
+### 3. Updating Site Configuration
+
+In the `site-config.js` file located in the `lib` folder, you can update the following configuration to match your site’s details:
+
+```jsx
+export const DATA = {
+  siteName: "LISA/Schema",
+  siteDescription: "A documentation on Schema Doc app",
+  siteUrl: "https://schemadoc.vercel.app/",
+  githubUrl: "https://github.com/lisaorg",
+  terminalCommand: "npm install lisa@latest",
+  authorName: "amyssnippet",
+  authorUrl: "https://github.com/amyssnippet",
+  // You can specify any other URLs like your personal portfolio or social media profiles
+};
+```
+
+Simply replace the placeholder values with your own site’s information. This setup allows you to quickly adapt Schema Doc to fit your needs without modifying the core UI components.
