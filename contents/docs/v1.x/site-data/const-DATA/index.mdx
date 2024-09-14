@@ -1,0 +1,95 @@
+---
+title: const-DATA
+description: Configuring Site Data with DATA.
+---
+
+The `DATA` constant in `lib/site-config.js` is used to define various site-wide settings and information for your Schema Doc project. This configuration helps in customizing key details about your documentation site without altering the core components. Here’s a breakdown of how to use and customize the `DATA` constant:
+
+## Basic Structure 
+
+The `DATA` constant is an object that contains several properties, each representing a piece of site-specific information:
+
+```jsx
+export const DATA = {
+  siteName: "Schema",
+  siteDescription: "A documentation template built by amyssnippet under the name of LISA org.",
+  siteUrl: "https://schema-document-template.vercel.app/",
+  githubUrl: "https://github.com/lisaorg",
+  xUrl: "https://x.com/",
+  terminalCommand: "npm install lisa@latest",
+  authorName: "amyssnippet",
+  authorUrl: "https://github.com/amyssnippet",
+  // you can specify any other URLs like your personal portfolio or social media profiles
+};
+```
+
+## Customising the `DATA`
+
+1. siteName: Set this to the name of your site. It will typically be used in the site’s header or title tag.
+
+```jsx
+siteName: "My Documentation Site",
+```
+
+2. siteDescription: Provide a brief description of your site. This will be used in meta tags for SEO and possibly in the site’s footer.
+
+```jsx
+siteDescription: "A comprehensive documentation site for My Project.",
+```
+
+3. siteUrl: Specify the URL where your documentation site will be hosted. This is used for absolute links and SEO.
+
+```jsx
+siteUrl: "https://my-documentation-site.com/",
+```
+
+4. githubUrl: Enter the URL to your project’s GitHub repository. This is often linked from the site’s footer or other relevant sections.
+
+```jsx
+githubUrl: "https://github.com/myusername/myproject",
+```
+
+5. xUrl: Include any additional URLs that you want to link to from your site, such as social media profiles.
+
+```jsx
+xUrl: "https://twitter.com/myusername",
+```
+
+6. terminalCommand: Provide a terminal command that users can run to install or set up your project. This is useful for quickly getting started.
+
+```jsx
+terminalCommand: "npm install myproject@latest",
+```
+
+7. authorName: Name of the author or organization behind the documentation.
+
+```jsx
+authorName: "MyUsername",
+```
+
+8. authorUrl: Link to the author’s or organization’s profile, portfolio, or social media.
+
+```jsx
+authorUrl: "https://github.com/myusername",
+```
+
+You can also specify other URLs like personal portfolios or additional social media links by adding more fields to the `DATA` object.
+
+## Example Configuration
+
+Here’s an example of a customized `DATA` object:
+
+```jsx
+export const DATA = {
+  siteName: "MyProject Docs",
+  siteDescription: "Documentation for MyProject, providing detailed guides and examples.",
+  siteUrl: "https://docs.myproject.com/",
+  githubUrl: "https://github.com/myusername/myproject",
+  xUrl: "https://twitter.com/myusername",
+  terminalCommand: "npm install myproject@latest",
+  authorName: "MyName",
+  authorUrl: "https://github.com/myusername",
+};
+```
+
+This configuration will tailor the documentation site’s branding and links to match your specific project and preferences.
