@@ -1,0 +1,91 @@
+---
+title: const-MENU
+description: Configuring the Navbar with `MENU`.
+---
+
+In Schema Doc, the `MENU` constant in `lib/site-config.ts` is used to define the navigation items that appear in the Navbar of your documentation site. This configuration allows you to easily manage and customize the menu items that users see. Here’s an overview of how it works:
+
+## Basic Structure
+
+The `MENU` constant is an array of objects, where each object represents a menu item. Here’s a basic example:
+
+```jsx
+export const MENU = [
+  {
+    title: "Documentation",
+    href: `/docs${page_routes[0].href}`,
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+  },
+  {
+    title: "Examples",
+    href: "#",
+  },
+  {
+    title: "Guides",
+    href: "#",
+  },
+  {
+    title: "Community",
+    href: "#",
+    external: true,
+  },
+];
+```
+
+## Menu Item Configuration
+
+Each menu item in the `MENU` array can have the following properties:
+
+1. **title**: The text displayed for the menu item.
+2. **href**: The URL or path where the menu item links to. This can be an internal route or an external URL.
+3. **external (optional)**: If set to true, the link will open in a new tab, indicating that it is an external link.
+
+## Customizing the Menu
+
+1. **Add or Remove Items**: To add a new menu item, simply add a new object to the `MENU` array. To remove an item, delete the corresponding object from the array.
+2. **Edit Titles and Links**: Update the title and href properties to match the desired text and URL for each menu item. For example, if you want to change the "Guides" menu item to "Tutorials," modify the title property accordingly.
+3. **External Links**: If you want a menu item to link to an external site and open in a new tab, set the external property to true. For example:
+
+```jsx
+{
+  title: "Community",
+  href: "https://community.example.com",
+  external: true,
+}
+```
+4. **Dynamic Routes**: If you have dynamic routes, like the documentation routes that are based on `page_route`s, ensure the href is set correctly. For example, if `page_routes` is an array of route objects, you can concatenate the route path as shown in the example.
+
+## Example
+
+Here’s how the `MENU` configuration might look with some customized entries:
+
+```jsx
+export const MENU = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Docs",
+    href: "/docs",
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+  },
+  {
+    title: "Examples",
+    href: "/examples",
+  },
+  {
+    title: "Community",
+    href: "https://community.example.com",
+    external: true,
+  },
+];
+```
+
+This configuration will render a Navbar with menu items linking to your site's pages and external resources as specified.
