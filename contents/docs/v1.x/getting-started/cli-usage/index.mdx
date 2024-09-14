@@ -1,0 +1,85 @@
+---
+title: Command Line Interface (CLI) - Version 1.1.8
+description: This guide will help you get started with CLI commands and schema configuration file.
+---
+
+<Note title="Remember" type="danger">
+  This guide is for everyone but specially for CLI users(npx schemadoc@latest)
+</Note>
+
+## Introduction
+
+As of the 1.1.8 update, the Schema Doc CLI has been enhanced to provide a more streamlined and user-friendly setup process. The CLI now prompts users to input key site data directly from the terminal, making it easier to configure your documentation site without manually editing configuration files. The data collected by the CLI is saved to a file named `schema.config.ts` located in the root directory of your project.
+
+## Setting Up Your Documentation with the CLI
+
+When you run the CLI, you’ll be prompted to provide several pieces of information about your site. These inputs are used to generate a configuration file that powers your documentation site. Below are the prompts and what they mean:
+
+1. **Name (siteName)**:
+- **Prompt**: Enter the site name:
+- **Example Input**: "Test Name"
+- **Description**: This will be the name displayed on your site, typically in the Navbar, Main Page and Site's Metadata Title.
+
+2. **Site Description (siteDescription)**:
+- **Prompt**: Enter the site description:
+- **Example Input**: "Test description"
+- **Description**: A brief description of your site, used in Main Page and sites description Metadata.
+
+3. **Site URL (siteUrl)**:
+- **Prompt**: Enter the site URL:
+- **Example Input**: "https://doc.com"
+- **Description**: The base URL for your site, used for absolute links and SEO.
+
+4. **GitHub URL (githubUrl)**:
+- **Prompt**: Enter the GitHub URL:
+- **Example Input**: "https://github.com/lisaorg"
+- **Description**: The link to your project’s repository, used in Main Page or in documentation sections.
+
+5. **Social Media URL (xUrl)**:
+- **Prompt**: Enter the X(formerly Twitter) URL:
+- **Example Input**: "https://x.com/"
+- **Description**: A link to your social media profile, often included in the Navbar.
+
+6. **Terminal Command (terminalCommand)**:
+- **Prompt**: Enter your project Terminal command:
+- **Example Input**: "npx yourpackage@latest"
+- **Description**: The command users will run to install your project or tools. This is typically displayed in the Main Pages' installation section of your documentation.
+
+8. **Author Name (authorName)**:
+- **Prompt**: Enter the author name:
+- **Example Input**: "Test Author"
+- **Description**: The name of the person or organization behind the documentation, often displayed in footer section.
+
+10. **Author URL (authorUrl)**:
+- **Prompt**: Enter the author URL:
+- **Example Input**: "https://github.com/amyssnippet"
+- **Description**: A link to the author’s profile or personal site, used in the footer section.
+
+## The `schema.config.ts` File
+
+Once you provide the required information, the CLI will generate a `schema.config.ts` file in the root directory of your project. This file contains all the data you entered, structured as follows:
+
+```typescript
+export const DATA = {
+  siteName: "Test Name",
+  siteDescription: "Test description",
+  siteUrl: "https://doc.com",
+  githubUrl: "https://github.com/lisaorg",
+  xUrl: "https://x.com/",
+  terminalCommand: "npx x@latesttest",
+  authorName: "Test Author",
+  authorUrl: "https://github.com/amyssnippet",
+};
+```
+
+## Using the `schema.config.ts` File
+
+The `schema.config.ts` file is automatically imported and used by various components and configurations within the Schema Doc project. This means that by simply running the CLI and providing your information, your documentation site is fully configured and ready to go.
+
+## Updating Your Configuration
+
+If you need to update any of this information later, you can either rerun the CLI or manually edit the `schema.config.ts` file. The changes will be reflected across your site, ensuring that your documentation remains consistent and up-to-date.
+
+## Conclusion
+
+The CLI update in version 1.1.8 simplifies the process of setting up and customizing your Schema Doc site. By answering a few prompts, you can configure your entire site without needing to dive into the code, making it easier than ever to get started with Schema Doc.
