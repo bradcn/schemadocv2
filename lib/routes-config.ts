@@ -226,5 +226,5 @@ export function getPreviousNext(path: string, v: Version) {
   };
 }
 
-export const availableVersions = ["v3.5.9", "v2.3.6", "v1.2.2"] as const;
+export const availableVersions = ["v3.5.9", "v2.3.6", "v1.x"] as const;
 export type Version = (typeof availableVersions)[number];
