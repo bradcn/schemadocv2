@@ -1,11 +1,9 @@
-// app/license/page.tsx
-
 import React from 'react';
 
 const LicensePage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen px-4">
-      <div className="shadow-lg rounded-lg p-8 max-w-3xl w-full">
+    <div className="flex items-center justify-center min-h-screen text-center">
+      <div className="w-full max-w-3xl">
         <h1 className="text-3xl font-bold mb-4">MIT License</h1>
         
         <p className="mb-2">
