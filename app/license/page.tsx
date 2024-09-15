@@ -2,9 +2,9 @@ import React from 'react';
 
 const LicensePage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen text-center">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-3xl">
-        <h1 className="text-3xl font-bold mb-4">MIT License</h1>
+        <h1 className="text-3xl font-bold mb-4 text-center">MIT License</h1>
         
         <p className="mb-2">
           <span className="font-semibold">&copy; 2024</span> LisaOrg, originally developed by AmySSnippet
