@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { communityroutes } from './communityroutes';
+import { communityroutes } from '@/lib/communityroutes';
 
 const CommunityLeftbar = () => (
   <div className="w-64 bg-gray-100 p-4">
