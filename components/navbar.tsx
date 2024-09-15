@@ -38,16 +38,21 @@ export const NAVLINKS: NavLink[] = [
     href: "/blog",
   },
   {
-    title: "Examples",
-    href: "#",
+    title: "License",
+    href: "/license",
   },
   {
-    title: "Guides",
-    href: "#",
+    title: "Discover",
+    href: "/discover",
   },
   {
     title: "Community",
-    href: "#",
+    href: "/community",
+    external: false,
+  },
+  {
+    title: "LISA Org.",
+    href: "https://lisaorg.vercel.app/",
     external: true,
   },
 ];
