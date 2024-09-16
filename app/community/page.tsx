@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export default function CommunityPage() {
   return(
+    <>
     <div class="min-h-screen flex flex-col items-center">
   <!-- Header Section -->
   <header class="w-full py-6">
@@ -71,5 +72,6 @@ export default function CommunityPage() {
     <p class="text-center">© 2024 Community Project. All rights reserved.</p>
   </footer>
 </div>
+ </>
   );
 }
