@@ -13,6 +13,7 @@ import { SheetLeftbar } from "./leftbar";
 import { SheetClose } from "@/components/ui/sheet";
 import NavGetStarted from "./nav-get-started";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { ReactNode } from "react";
 import { DATA } from "@/schema.config";
 
@@ -96,7 +97,7 @@ export function Navbar() {
 export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2.5">
-      <img alt="schemadoclogo" src="../public/schemadoclogo.png" className="w-7 h-7 text-muted-foreground fill-current" />
+      <Image alt="schemadoclogo" src="https://lisaorg.github.io/lisamedia/schemadoclogo.png" className="w-7 h-7 text-muted-foreground fill-current" />
       <h2 className="text-md font-bold">{DATA.siteName}</h2>
     </Link>
   );
