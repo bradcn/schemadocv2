@@ -98,7 +98,7 @@ export function Navbar() {
 export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2.5">
-      <Image alt="schemadoclogo" src={schemadoclogo} className="w-7 h-7" />
+      <Image alt="schemadoclogo" src={schemadoclogo} className="w-10 h-10" loading="lazy" />
       <h2 className="text-md font-bold">{DATA.siteName}</h2>
     </Link>
   );
