@@ -20,7 +20,7 @@ const CommunityPage = () => {
             Get help from our community or access our support channels for assistance.
           </p>
           <div className="text-center mt-4">
-            <Link href="/support">
+            <Link href="/community/support">
               <a className="underline">Visit Support Page</a>
             </Link>
           </div>
@@ -33,7 +33,7 @@ const CommunityPage = () => {
             Meet the core members who help build and maintain this project.
           </p>
           <div className="text-center mt-4">
-            <Link href="/team">
+            <Link href="/community/team">
               <a className="underline">Meet the Team</a>
             </Link>
           </div>
@@ -46,7 +46,7 @@ const CommunityPage = () => {
             Find tutorials, guides, and other resources to help you get started.
           </p>
           <div className="text-center mt-4">
-            <Link href="/resources">
+            <Link href="/community/resources">
               <a className="underline">Explore Resources</a>
             </Link>
           </div>
@@ -59,7 +59,7 @@ const CommunityPage = () => {
             Learn how to contribute to our project and help improve the community.
           </p>
           <div className="text-center mt-4">
-            <Link href="/contributing">
+            <Link href="/community/contributing">
               <a className="underline">Start Contributing</a>
             </Link>
           </div>
@@ -72,7 +72,7 @@ const CommunityPage = () => {
             Understand our release cycle and how new features and updates are rolled out.
           </p>
           <div className="text-center mt-4">
-            <Link href="/release-process">
+            <Link href="/community/release-process">
               <a className="underline">View Release Process</a>
             </Link>
           </div>
@@ -85,7 +85,7 @@ const CommunityPage = () => {
             Got questions? We’ve got answers to the most common inquiries.
           </p>
           <div className="text-center mt-4">
-            <Link href="/faq">
+            <Link href="/community/faq">
               <a className="underline">Read FAQ</a>
             </Link>
           </div>
