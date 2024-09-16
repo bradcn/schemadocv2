@@ -14,6 +14,7 @@ import { SheetClose } from "@/components/ui/sheet";
 import NavGetStarted from "./nav-get-started";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import schemadoclogo from "@/public/schemadoclogo.png";
 import { ReactNode } from "react";
 import { DATA } from "@/schema.config";
 
@@ -97,7 +98,7 @@ export function Navbar() {
 export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2.5">
-      <Image alt="schemadoclogo" src="https://lisaorg.github.io/lisamedia/schemadoclogo.png" className="w-7 h-7 text-muted-foreground fill-current" />
+      <Image alt="schemadoclogo" src={schemadoclogo} className="w-7 h-7" />
       <h2 className="text-md font-bold">{DATA.siteName}</h2>
     </Link>
   );
