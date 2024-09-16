@@ -1,7 +1,7 @@
 "use client";
 
 import { getCommunityRoutes } from "@/lib/community-routes";
-import SubLink from "./subLink";
+import SubLink from "./sublink";
 import { usePathname } from "next/navigation";
 
 export default function CommunityMenu({ isSheet = false }) {
