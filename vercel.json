@@ -2,5 +2,5 @@
   "redirects": [
     { "source": "/community/community", "destination": "/community", "permanent": true }
   ],
-  "rewrites": [{ "source": "/fr", "destination": "https://sche.fider.io" }]
+  "rewrites": [{ "source": "/feedback", "destination": "https://schema.fider.io" }]
 }
