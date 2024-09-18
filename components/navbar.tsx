@@ -40,8 +40,8 @@ export const NAVLINKS: NavLink[] = [
     href: "/blog",
   },
   {
-    title: "License",
-    href: "/license",
+    title: "Legal",
+    href: "/legal/license",
   },
   {
     title: "Discover",
