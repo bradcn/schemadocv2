@@ -34,7 +34,7 @@ const CodeOfConduct = () => {
           <li>The use of sexualized language or imagery and unwelcome sexual attention or advances</li>
           <li>Trolling, insulting/derogatory comments, and personal or political attacks</li>
           <li>Public or private harassment</li>
-          <li>Publishing others’ private information, such as a physical or electronic address, without explicit permission</li>
+          <li>Publishing others&rsquo; private information, such as a physical or electronic address, without explicit permission</li>
           <li>Other conduct which could reasonably be considered inappropriate in a professional setting</li>
         </ul>
       </section>
