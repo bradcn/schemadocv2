@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PropsWithChildren } from "react";
+import { Cleftbar } from "@/components/cleftbar";
 
 export const metadata: Metadata = {
   title: "Community | Schemadoc",
@@ -7,10 +8,15 @@ export const metadata: Metadata = {
   description: "Community section of Schemadoc application",
 };
 
-export default function CommunityLayout({ children }: PropsWithChildren) {
+export default function CommunityLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <div className="flex flex-col items-start justify-center pt-8 pb-10 md:w-[70%] mx-auto">
-      {children}
+    <div className="flex items-start gap-14">
+      <Cleftbar key="leftbar" />
+      <div className="flex-[4]">{children}</div>{" "}
     </div>
   );
 }
