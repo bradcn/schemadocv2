@@ -11,6 +11,7 @@ import { Button } from "./ui/button";
 import { AlignLeftIcon } from "lucide-react";
 import { DialogTitle } from "./ui/dialog";
 import DocsMenu from "./docs-menu";
+import LegalMenu from "./LegalMenu";
 import CommunityMenu from "./CommunityMenu";
 import VersionManager from "./version-select";
 
@@ -51,6 +52,9 @@ export function SheetLeftbar() {
           </div>
           <div className="mx-2 px-5">
             <CommunityMenu isSheet />
+          </div>
+          <div className="mx-2 px-5">
+            <LegalMenu isSheet />
           </div>
         </ScrollArea>
       </SheetContent>
