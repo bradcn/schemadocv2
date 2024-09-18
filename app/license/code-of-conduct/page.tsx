@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Code of Conduct - Schemadoc',
+  title: 'Code of Conduct - Schemafoc',
   description: 'Code of Conduct for Schemadoc',
 };
 
@@ -55,7 +55,7 @@ const CodeOfConduct = () => {
           This Code of Conduct applies within all project spaces, and it also applies when an individual is representing the project or its community in public spaces. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
         </p>
         <p className="text-lg leading-relaxed">
-          This Code of Conduct also applies outside the project spaces when there is a reasonable belief that an individual's behavior may have a negative impact on the project or its community.
+          This Code of Conduct also applies outside the project spaces when there is a reasonable belief that an individual&rsquo;s behavior may have a negative impact on the project or its community.
         </p>
       </section>
 
@@ -65,7 +65,7 @@ const CodeOfConduct = () => {
           Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at <Link href="mailto:support.schemadoc@gmail.com" className="text-blue-500 hover:underline">support.schemadoc@gmail.com</Link>. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
         </p>
         <p className="text-lg leading-relaxed">
-          Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project’s leadership.
+          Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project&rsquo;s leadership.
         </p>
       </section>
 
