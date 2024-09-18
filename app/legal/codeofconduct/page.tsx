@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const CodeOfConduct = () => {
   return (
-    <main className="max-w-3xl mx-auto">
+    <main className="py-8 max-w-3xl mx-auto">
       <h1 className="text-4xl font-bold mb-6">Code of Conduct</h1>
 
       <section className="mb-8">
