@@ -1,14 +1,14 @@
 export default function SupportPage() {
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold">Support</h1>
+    <div className="max-w-4xl mx-auto my-6">
+      <h1 className="text-4xl font-bold my-4">Support</h1>
       
-      <p className="text-lg">
-        Schemadoc has a smaller community of dedicated developers, with fewer members but a strong focus on meaningful updates. On this page, we’ve listed some SchemaDoc-related community groups you can join. See other pages in this section for additional online and in-person learning materials. Before participating in Schemadoc communities, please read our code of conduct. We’ve adopted a contributor-friendly environment, and we expect all community members to adhere to the guidelines within.
+      <p className="text-lg my-4">
+        SchemaDoc has a smaller community of dedicated developers, with fewer members but a strong focus on meaningful updates. On this page, we’ve listed some SchemaDoc-related community groups you can join. See other pages in this section for additional online and in-person learning materials. Before participating in SchemaDoc communities, please read our code of conduct. We’ve adopted a contributor-friendly environment, and we expect all community members to adhere to the guidelines within.
       </p>
 
-      <section>
-        <h2 className="text-3xl font-semibold">Feature Requests</h2>
+      <section className="my-8">
+        <h2 className="text-3xl font-semibold my-4">Feature Requests</h2>
         <p className="text-lg">
           For new feature requests, you can create a post on GitHub Issues. GitHub Issues is a handy tool for managing feature development and allows you to start by opening an issue. It also helps track demand for specific features using labels or upvotes, making it easier to prioritize compared to other methods.
           <br />
@@ -17,8 +17,8 @@ export default function SupportPage() {
         </p>
       </section>
 
-      <section>
-        <h2 className="text-3xl font-semibold">News</h2>
+      <section className="my-8">
+        <h2 className="text-3xl font-semibold my-4">News</h2>
         <p className="text-lg">
           For the latest news about SchemaDoc, follow us on <a href="https://daily.dev" className="underline">daily.dev</a> and check out the official SchemaDoc blog on this website.
         </p>
