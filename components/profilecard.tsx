@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import Image from "next/image";
 
 interface CardProps {
   name: string;
@@ -15,7 +14,7 @@ const ProfileCard: React.FC<CardProps> = ({ name, title, imgUrl, githubUrl, port
   return (
     <div className="shadow-md p-6 rounded-lg max-w-sm">
       <div className="flex mb-4">
-        <Image
+        <img
           src={imgUrl}
           alt={`${name}'s profile`}
           className="w-24 h-24 rounded-full object-cover"
