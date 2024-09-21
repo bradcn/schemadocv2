@@ -1,35 +1,56 @@
 import * as React from 'react';
-import * as Card from '@radix-ui/react-card';
+import { Slot } from '@radix-ui/react-slot'; // Radix UI utility component
 
 interface CardProps {
   name: string;
   title: string;
+  imgUrl: string;
   githubUrl: string;
   portfolioUrl: string;
   devtoUrl: string;
 }
 
-const ProfileCard: React.FC<CardProps> = ({ name, title, githubUrl, portfolioUrl, devtoUrl }) => {
+const ProfileCard: React.FC<CardProps> = ({ name, title, imgUrl, githubUrl, portfolioUrl, devtoUrl }) => {
   return (
-    <Card.Root className="bg-white shadow-lg p-6 rounded-lg max-w-sm">
-      <Card.Header>
-        <h2 className="text-xl font-bold">{name}</h2>
-        <p className="text-sm text-gray-500">{title}</p>
-      </Card.Header>
-      <Card.Body className="mt-4">
-        <div className="flex flex-col space-y-3">
-          <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-            GitHub Profile
-          </a>
-          <a href={portfolioUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-            Personal Portfolio
-          </a>
-          <a href={devtoUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-            Dev.to Profile
-          </a>
-        </div>
-      </Card.Body>
-    </Card.Root>
+    <div className="shadow-md p-6 rounded-lg max-w-sm">
+      {/* Profile Image */}
+      <div className="flex justify-center mb-4">
+        <img
+          src={imgUrl}
+          alt={`${name}'s profile`}
+          className="w-24 h-24 rounded-full object-cover"
+        />
+      </div>
+      <div className="card-header text-center">
+        <h2 className="text-2xl font-semibold">{name}</h2>
+        <p>{title}</p>
+      </div>
+      <div className="card-body mt-4">
+        <ul className="space-y-2 text-center">
+          <li>
+            <Slot>
+              <a href={githubUrl} className="hover:underline" target="_blank" rel="noopener noreferrer">
+                GitHub Profile
+              </a>
+            </Slot>
+          </li>
+          <li>
+            <Slot>
+              <a href={portfolioUrl} className="hover:underline" target="_blank" rel="noopener noreferrer">
+                Personal Portfolio
+              </a>
+            </Slot>
+          </li>
+          <li>
+            <Slot>
+              <a href={devtoUrl} className="hover:underline" target="_blank" rel="noopener noreferrer">
+                Dev.to Profile
+              </a>
+            </Slot>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 };
 
