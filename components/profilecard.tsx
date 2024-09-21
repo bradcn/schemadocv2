@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot'; // Radix UI utility component
+import { Slot } from '@radix-ui/react-slot';
+import Image from "next/image";
 
 interface CardProps {
   name: string;
@@ -13,9 +14,8 @@ interface CardProps {
 const ProfileCard: React.FC<CardProps> = ({ name, title, imgUrl, githubUrl, portfolioUrl, devtoUrl }) => {
   return (
     <div className="shadow-md p-6 rounded-lg max-w-sm">
-      {/* Profile Image */}
-      <div className="flex justify-center mb-4">
-        <img
+      <div className="flex mb-4">
+        <Image
           src={imgUrl}
           alt={`${name}'s profile`}
           className="w-24 h-24 rounded-full object-cover"
@@ -26,7 +26,7 @@ const ProfileCard: React.FC<CardProps> = ({ name, title, imgUrl, githubUrl, port
         <p>{title}</p>
       </div>
       <div className="card-body mt-4">
-        <ul className="space-y-2 text-center">
+        <ul className="space-y-2">
           <li>
             <Slot>
               <a href={githubUrl} className="hover:underline" target="_blank" rel="noopener noreferrer">
