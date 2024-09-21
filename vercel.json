@@ -1,6 +1,12 @@
 {
   "redirects": [
-    { "source": "/community/community", "destination": "/community", "permanent": true }
+    { "source": "/community/community", "destination": "/community", "permanent": true },
+    { "source": "/community/community/support", "destination": "/community/support", "permanent": true },
+    { "source": "/community/community/team", "destination": "/community/team", "permanent": true },
+    { "source": "/community/community/resources", "destination": "/community/resources", "permanent": true },
+    { "source": "/community/community/contributing", "destination": "/community/contributing", "permanent": true },
+    { "source": "/community/community/release-process", "destination": "/community/release-process", "permanent": true },
+    { "source": "/community/community/faq", "destination": "/community/faq", "permanent": true }
   ],
   "rewrites": [{ "source": "/feedback", "destination": "https://schema.fider.io" }]
 }
