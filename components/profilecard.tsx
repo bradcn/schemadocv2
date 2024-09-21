@@ -22,15 +22,15 @@ const ProfileCard: React.FC<CardProps> = ({ name, title, imgUrl, githubUrl, port
         />
       </div>
 
-      {/* Header with Border */}
-      <div className="card-header text-center border-b border-gray-300 pb-4">
+      {/* Header with no unnecessary border */}
+      <div className="card-header text-center pb-4">
         <h2 className="text-2xl font-semibold">{name}</h2>
         <p className="text-gray-600">{title}</p>
       </div>
 
       {/* Body with Links and Border */}
-      <div className="card-body mt-4 space-y-2 border-t border-gray-300 pt-4">
-        <ul className="space-y-2">
+      <div className="card-body mt-4 border-t border-gray-300 pt-4">
+        <ul className="space-y-2 text-center">
           <li>
             <Slot>
               <a href={githubUrl} className="hover:underline text-blue-500" target="_blank" rel="noopener noreferrer">
