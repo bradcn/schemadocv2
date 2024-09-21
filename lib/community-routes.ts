@@ -9,13 +9,14 @@ const communityRoutes: EachRoute[] = [
   {
     title: "Community",
     href: "/community",
-  },
+    items: [
   { title: "Support", href: "/support" },
   { title: "Team", href: "/team" },
   { title: "Resources", href: "/resources" },
   { title: "Contributing", href: "/contributing" },
   { title: "Release Process", href: "/release-process" },
   { title: "FAQ", href: "/faq" },
+      ],
 ];
 
 type Page = { title: string; href: string };
