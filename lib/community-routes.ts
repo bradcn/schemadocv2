@@ -16,7 +16,6 @@ const communityRoutes: EachRoute[] = [
   { title: "Contributing", href: "/contributing" },
   { title: "Release Process", href: "/release-process" },
   { title: "FAQ", href: "/faq" },
-  },
 ];
 
 type Page = { title: string; href: string };
