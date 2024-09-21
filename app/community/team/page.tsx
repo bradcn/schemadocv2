@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TeamPage() {
   return(
     <main className="max-w-4xl mx-auto my-6">
-      <h1 className="text-4xl font-bold my-4">Support</h1>
+      <h1 className="text-4xl font-bold my-4">Team</h1>
       <p className="text-lg my-4">
         The Schemadoc team works on the core functionality, as well as the Schemadoc documentation website.
       </p>
