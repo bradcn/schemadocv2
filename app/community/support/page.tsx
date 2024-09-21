@@ -12,7 +12,7 @@ export default function SupportPage() {
       <h1 className="text-4xl font-bold my-4">Support</h1>
       
       <p className="text-lg my-4">
-        SchemaDoc has a smaller community of dedicated developers, with fewer members but a strong focus on meaningful updates. On this page, we’ve listed some Schemadoc-related community groups you can join. See other pages in this section for additional online and in-person learning materials. Before participating in Schemadoc communities, please read our code of conduct. We’ve adopted <a href="https://www.contributor-covenant.org/" className="underline">contributor convenant</a>, and we expect all community members to adhere to the guidelines within.
+        Schemadoc has a smaller community of dedicated developers, with fewer members but a strong focus on meaningful updates. On this page, we’ve listed some Schemadoc-related community groups you can join. See other pages in this section for additional online and in-person learning materials. Before participating in Schemadoc communities, please read our <a href="/legal/codeofconduct" className="underline">code of conduct</a>. We’ve adopted <a href="https://www.contributor-covenant.org/" className="underline">contributor convenant</a>, and we expect all community members to adhere to the guidelines within.
       </p>
 
       <section className="my-8">
@@ -28,7 +28,7 @@ export default function SupportPage() {
       <section className="my-8">
         <h2 className="text-3xl font-semibold my-4">News</h2>
         <p className="text-lg">
-          For the latest news about SchemaDoc, follow us on <a href="https://dev.to/schemadoc" className="underline">dev.to</a> and check out the official <a href="/blog" className="underline">Schemadoc blog</a>on this website.
+          For the latest news about Schemadoc, follow us on <a href="https://dev.to/schemadoc" className="underline">dev.to</a> and check out the official <a href="/blog" className="underline">Schemadoc blog</a>on this website.
         </p>
       </section>
     </div>
