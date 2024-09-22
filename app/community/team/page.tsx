@@ -36,7 +36,7 @@ export default function TeamPage() {
             <ProfileCard
               name="Dinesh Verma"
               title="Contributor"
-              imgUrl="https://dineshverma.vercel.app/dinesh1.jpg"
+              imgUrl="https://dineshverma.vercel.app/dinesh1.jpeg"
               githubUrl="https://github.com/DineshVerma-dev"
               portfolioUrl="https://dineshverma.vercel.app/"
               devtoUrl="https://dev.to/"
