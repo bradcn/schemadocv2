@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function TeamPage() {
-  return(
+  return (
     <main className="max-w-4xl mx-auto my-6">
       <h1 className="text-4xl font-bold my-4">Team</h1>
       <p className="text-lg my-4">
@@ -20,22 +20,22 @@ export default function TeamPage() {
         Current members of the Schemadoc team are listed below.
       </p>
       <ProfileCard
-  name="Amol Yadav"
-  title="Admin"
-  imgUrl="https://amyssnippet.vercel.app/PSX_20240219_195257.jpg"
-  githubUrl="https://github.com/amyssnippet"
-  portfolioUrl="https://amyssnippet.vercel.app/"
-  devtoUrl="https://dev.to/amyssnippet"
-/>
-     <br />
+        name="Amol Yadav"
+        title="Admin"
+        imgUrl="https://amyssnippet.vercel.app/PSX_20240219_195257.jpg"
+        githubUrl="https://github.com/amyssnippet"
+        portfolioUrl="https://amyssnippet.vercel.app/"
+        devtoUrl="https://dev.to/amyssnippet"
+      />
+      <br />
       <ProfileCard
-  name="Dinesh Verma"
-  title="Contributor"
-  imgUrl="https://dineshverma.vercel.app/dinesh1.jpg"
-  githubUrl="https://github.com/DineshVerma-dev"
-  portfolioUrl="https://dineshverma.vercel.app/"
-  devtoUrl="https://dev.to/"
-/>
+        name="Dinesh Verma"
+        title="Contributor"
+        imgUrl="https://dineshverma.vercel.app/dinesh1.jpg"
+        githubUrl="https://github.com/DineshVerma-dev"
+        portfolioUrl="https://dineshverma.vercel.app/"
+        devtoUrl="https://dev.to/dinesh_verma"
+      />
     </main>
   );
 }
