@@ -1,0 +1,248 @@
+---
+title: Custom Sheet Component
+description: The following documentation provides a step-by-step explanation of how to use the `Sheet` component and each of its subcomponents. It describes the imported modules, custom utility functions, and the overall structure. This explanation is aimed at providing clarity on each aspect of the code, including code snippets for easy reference.
+---
+
+### 1. `use client` Directive
+
+At the top of the file, you’ll see:
+
+```js
+"use client";
+```
+
+This is a special directive in Next.js, informing the framework that this code is meant to run in a client-side context. This is necessary because the sheet uses React hooks, which require client-side execution.
+
+---
+
+### 2. **Imports**  
+The imports bring in all necessary modules and libraries.
+
+```js
+import * as React from "react";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { cva, type VariantProps } from "class-variance-authority";
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
+```
+
+- **React**: Imports core functionalities of React, such as `forwardRef` and `ElementRef`.
+- **SheetPrimitive**: The Radix UI Dialog components (used to create modals).
+- **cva**: This function from `class-variance-authority` enables utility class generation based on component variants (like modal position).
+- **X from lucide-react**: Imports the `X` icon used for the close button in the sheet.
+- **`cn` from utils**: A utility function to conditionally merge multiple class names together.
+
+---
+
+### 3. **Sheet Structure Components**
+
+Here, we alias Radix UI components to create custom sheet components:
+
+```js
+const Sheet = SheetPrimitive.Root;
+const SheetTrigger = SheetPrimitive.Trigger;
+const SheetClose = SheetPrimitive.Close;
+const SheetPortal = SheetPrimitive.Portal;
+```
+
+- **Sheet**: This is the root component of the sheet (modal), representing the main container.
+- **SheetTrigger**: Defines the trigger element that will open the sheet when interacted with (e.g., a button).
+- **SheetClose**: The component that closes the sheet when clicked.
+- **SheetPortal**: Handles the rendering of the sheet’s content outside the DOM hierarchy, making sure it appears above other content.
+
+---
+
+### 4. **SheetOverlay Component**
+
+The `SheetOverlay` provides a background overlay (dimmed backdrop) when the sheet is active:
+
+```js
+const SheetOverlay = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Overlay
+    className={cn(
+      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out",
+      className
+    )}
+    {...props}
+    ref={ref}
+  />
+));
+SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
+```
+
+- **`forwardRef`**: Allows forwarding a `ref` from a parent to the `Overlay` DOM element.
+- **`className`**: Combines static and dynamic class names, allowing users to customize the overlay’s styles.
+- **Animation states**: Different animations are applied when the sheet opens (`animate-in`) or closes (`animate-out`).
+
+### Example of usage:
+```jsx
+<SheetPortal>
+  <SheetOverlay />
+</SheetPortal>
+```
+
+This will show a dark overlay when the sheet is active, with smooth animations for open and close transitions.
+
+---
+
+### 5. **`sheetVariants`** (Styling and Variants)
+
+The `cva` function is used to define the variant-based styling for the sheet content. This allows the sheet to be displayed at different positions (top, bottom, left, right) with specific animations.
+
+```js
+const sheetVariants = cva(
+  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out",
+  {
+    variants: {
+      side: {
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        bottom: "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        right: "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+      },
+    },
+    defaultVariants: {
+      side: "right",
+    },
+  }
+);
+```
+
+- **`cva`**: Creates a set of CSS classes that can dynamically change based on the `side` variant.
+- **Variants**: These define how the sheet appears on different sides (top, bottom, left, right).
+- **Default Variant**: The default is set to `right`, meaning the sheet will slide in from the right side unless specified otherwise.
+
+---
+
+### 6. **SheetContent Component**
+
+The `SheetContent` is the main area where all content will be placed. It uses the previously defined `sheetVariants` for styling.
+
+```js
+const SheetContent = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Content>,
+  SheetContentProps
+>(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      {children}
+      <SheetPrimitive.Close className="absolute right-4 top-7 rounded-sm opacity-70 hover:opacity-100 focus:outline-none">
+        <X className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </SheetPrimitive.Close>
+    </SheetPrimitive.Content>
+  </SheetPortal>
+));
+SheetContent.displayName = SheetPrimitive.Content.displayName;
+```
+
+- **`side`**: Determines the position of the sheet (top, right, etc.), defaulting to `right`.
+- **`children`**: Any content to be rendered inside the sheet.
+- **Close button**: A close button is placed at the top-right corner using the `X` icon.
+
+---
+
+### 7. **SheetHeader and SheetFooter Components**
+
+These two components provide the structure for the header and footer sections of the sheet. They can hold titles, buttons, or any other elements.
+
+#### SheetHeader:
+```js
+const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn("flex flex-col space-y-2 text-center sm:text-left", className)} {...props} />
+);
+SheetHeader.displayName = "SheetHeader";
+```
+- **`flex-col`**: Ensures the header contents are stacked vertically.
+
+#### SheetFooter:
+```js
+const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)} {...props} />
+);
+SheetFooter.displayName = "SheetFooter";
+```
+- **`flex-col-reverse`**: Ensures footer elements stack vertically on small screens, but align horizontally on larger screens.
+
+---
+
+### 8. **SheetTitle and SheetDescription Components**
+
+These components render the title and description inside the sheet. They inherit the properties from Radix UI primitives but allow additional customization.
+
+#### SheetTitle:
+```js
+const SheetTitle = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Title ref={ref} className={cn("text-lg font-semibold", className)} {...props} />
+));
+SheetTitle.displayName = SheetPrimitive.Title.displayName;
+```
+
+#### SheetDescription:
+```js
+const SheetDescription = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Description ref={ref} className={cn("text-sm", className)} {...props} />
+));
+SheetDescription.displayName = SheetPrimitive.Description.displayName;
+```
+
+---
+
+### 9. **Exports**
+
+Finally, all the components are exported for usage in other parts of the application.
+
+```js
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+};
+```
+
+---
+
+### Example Usage
+
+To use the `Sheet` component in your app:
+
+```jsx
+<Sheet>
+  <SheetTrigger asChild>
+    <button>Open Sheet</button>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>My Sheet</SheetTitle>
+      <SheetDescription>This is a description inside the sheet</SheetDescription>
+    </SheetHeader>
+    <div>Your content here...</div>
+    <SheetFooter>
+      <button>Submit</button>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
+
+This code will open a right-aligned sheet when the "Open Sheet" button is clicked, displaying a title, description, content, and a submit button
