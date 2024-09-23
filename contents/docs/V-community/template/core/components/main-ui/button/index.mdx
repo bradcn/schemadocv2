@@ -1,0 +1,158 @@
+---
+title: Custom Button Component
+description: This code defines a flexible and customizable button component using React, Radix UI's Slot, and the `class-variance-authority` (`cva`) utility to handle multiple styling variants and sizes.
+---
+
+Here's a breakdown of how the code works and its key elements:
+
+#### 1. **Imports**:
+- **React**: Core library to define the button component.
+- **Slot from Radix UI**: Allows rendering the button as a different component when the `asChild` prop is used. This is useful if you want the button to behave like a link or another element while maintaining button styling.
+- **`cva` from `class-variance-authority`**: A utility that helps create class-based variants easily, allowing multiple styles to be defined for different button states (e.g., size, color, and other variations).
+- **`cn` utility**: A helper function (likely from your project’s utilities) that concatenates multiple class names and supports conditional styling.
+
+#### 2. **`buttonVariants`**:
+```ts
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap ...",
+  {
+    variants: {
+      variant: { ... },
+      size: { ... },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+```
+- `cva` is used to define reusable CSS classes for button styling. It supports two main variants: `variant` (button type) and `size`.
+- **Base classes**: The first argument to `cva` defines the base styles that all buttons will have. This includes:
+  - **`inline-flex`**: Aligns items inline and centers content.
+  - **`rounded-md`**: Adds border-radius to make the button corners rounded.
+  - **`transition-colors`**: Smooth transition when changing colors (hover/focus effects).
+  - **Accessibility-focused styles**: E.g., `focus-visible:outline-none` for accessible focus states and `disabled:opacity-50` for disabled states.
+
+- **Variants**:
+  - **`variant`**: Defines different types of buttons (e.g., default, destructive, outline, etc.). Each option has its own styles for background, text color, and hover effects.
+    - **default**: Primary button with a solid background.
+    - **destructive**: Button indicating a dangerous action, with a red background.
+    - **outline**: A button with a border, typically used for secondary actions.
+    - **secondary**: Another option for non-primary actions, with different colors.
+    - **ghost**: A button with no background, but changes on hover.
+    - **link**: A button that looks like a text link with an underline.
+  - **`size`**: Defines different button sizes (`default`, `sm`, `lg`, etc.), adjusting the height, padding, and sometimes the width (e.g., for icon buttons).
+    - **default**: Regular size with padding and a height of 10 units.
+    - **sm**: Smaller button, reduced height and padding.
+    - **lg**: Larger button with more padding.
+    - **icon**: Square-shaped button, typically used for icons (equal width and height).
+    - **xs**: Extra small button for compact spaces.
+  
+- **`defaultVariants`**: The default `variant` and `size` that will be applied if no specific variant or size is provided.
+
+#### 3. **`ButtonProps` Interface**:
+```ts
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
+```
+- `ButtonProps` extends the default button attributes provided by React’s `ButtonHTMLAttributes`, allowing the button to accept common button props like `onClick`, `disabled`, etc.
+- `VariantProps<typeof buttonVariants>`: This adds the ability to accept `variant` and `size` props based on the `buttonVariants` definition, allowing the developer to specify which button type or size to use.
+- `asChild`: A boolean flag that, if true, renders the button as a different component (using `Slot`) instead of the default `button` element. This is useful if you want a button-like behavior on elements like a `<div>` or `<a>`.
+
+#### 4. **`Button` Component**:
+```ts
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+```
+- **`React.forwardRef`**: This function is used to forward a `ref` to the actual DOM element (`button` or custom component). This is helpful for accessing the button’s DOM element directly, such as for handling focus or animations.
+- **`Comp = asChild ? Slot : "button"`**: If `asChild` is true, it renders a custom component using Radix’s `Slot`. If `asChild` is false (the default), it renders a regular `button` element.
+- **`buttonVariants({ variant, size, className })`**: The `buttonVariants` function applies the selected `variant` and `size` styles based on the props passed to the component, as well as any additional custom `className` provided.
+- **Props and `ref`**: Any extra props (`...props`) passed to the button, such as `onClick`, `disabled`, or other standard button attributes, are spread onto the component. The `ref` is passed to the underlying DOM element.
+
+#### 5. **`Button.displayName`**:
+```ts
+Button.displayName = "Button";
+```
+- This sets a display name for the component, which is useful for debugging in React DevTools.
+
+#### 6. **Exports**:
+```ts
+export { Button, buttonVariants };
+```
+- The `Button` component and the `buttonVariants` function are exported for use in other parts of the application.
+
+---
+
+### How to Upgrade or Customize
+
+Here are some ways you can extend or customize this button component:
+
+#### 1. **Add More Variants**:
+- You can extend the `buttonVariants` object to include new styles:
+  ```ts
+  variants: {
+    variant: {
+      ...,
+      success: "bg-success text-success-foreground hover:bg-success/90",
+      warning: "bg-warning text-warning-foreground hover:bg-warning/90",
+    },
+  }
+  ```
+  This would add new button styles for `success` and `warning`.
+
+#### 2. **Add More Sizes**:
+- You can also introduce more size options if needed, such as `xl`:
+  ```ts
+  size: {
+    ...,
+    xl: "h-12 rounded-lg px-10",
+  }
+  ```
+
+#### 3. **Add Icons Inside the Button**:
+- If you want to include icons inside the button, you could extend the component to accept an `icon` prop:
+  ```ts
+  const Button = ({ icon, ...props }) => (
+    <button {...props}>
+      {icon && <span className="mr-2">{icon}</span>}
+      {props.children}
+    </button>
+  );
+  ```
+
+#### 4. **Custom Transitions or Animations**:
+- You can modify the default `transition-colors` class or add additional transitions/animations (e.g., `scale`, `rotate`, etc.) for hover or focus states.
+
+#### 5. **Different HTML Elements**:
+- By setting `asChild` to true, you can render different HTML elements instead of a button, making it a flexible utility. For instance, render a `div` or `a` that behaves like a button:
+  ```ts
+  <Button asChild>
+    <a href="/profile">Profile</a>
+  </Button>
+  ```
+
+#### 6. **Advanced Interactions**:
+- You could add advanced behavior such as loading states, click effects, or even a toggle button by extending the props and logic of the component:
+  ```ts
+  const Button = ({ isLoading, ...props }) => (
+    <button {...props} disabled={isLoading}>
+      {isLoading ? "Loading..." : props.children}
+    </button>
+  );
+  ```
+
+This `Button` component is flexible and scalable, making it easy to build on top of it, create more variants, or adapt it for various use cases across your project.
