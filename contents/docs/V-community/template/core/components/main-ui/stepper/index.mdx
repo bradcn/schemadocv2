@@ -1,0 +1,160 @@
+---
+title: Detailed Documentation for the `Stepper` and `StepperItem` Components
+description: This section will break down the `Stepper` and `StepperItem` components, explaining the key imports, structure, and functionality. The `Stepper` component is designed to create a vertically aligned list with numbered steps, while the `StepperItem` component acts as a wrapper for each individual step.
+---
+
+### 1. **Imports**
+
+```js
+import { cn } from "@/lib/utils";
+import clsx from "clsx";
+import { Children, PropsWithChildren } from "react";
+```
+
+- **`cn`**: A utility function imported from `@/lib/utils`, which helps merge and conditionally apply CSS classes.
+- **`clsx`**: A utility for conditionally constructing className strings. It's similar to `cn` but provides more granular control over class merging.
+- **`Children`**: A React utility that provides helper functions to interact with the component's children, such as `count` and `map`.
+- **`PropsWithChildren`**: A TypeScript utility that extends a component’s props to include `children`, allowing the component to wrap its content around other child elements.
+
+---
+
+### 2. **`Stepper` Component**
+
+The `Stepper` component wraps a list of steps, automatically numbering each one. It leverages `Children` from React to iterate over the steps and adds styles and layout structure.
+
+```js
+export function Stepper({ children }: PropsWithChildren) {
+  const length = Children.count(children);
+```
+
+- **PropsWithChildren**: Extends the component's props to include any child elements.
+- **`length`**: Uses `Children.count(children)` to get the total number of steps (children) passed to the `Stepper` component.
+
+---
+
+#### Step Mapping and Styling
+
+```js
+return (
+  <div className="flex flex-col">
+    {Children.map(children, (child, index) => {
+      return (
+        <div
+          className={cn(
+            "border-l pl-9 relative",
+            clsx({
+              "pb-5 ": index < length - 1,
+            })
+          )}
+        >
+          <div className="bg-secondary w-8 h-8 text-xs font-medium rounded-full flex items-center justify-center absolute -left-4 font-code">
+            {index + 1}
+          </div>
+          {child}
+        </div>
+      );
+    })}
+  </div>
+);
+```
+
+- **`flex flex-col`**: This CSS class applied to the container ensures that the steps are laid out in a vertical column.
+- **`Children.map`**: This method iterates over each child (step) in the `Stepper`, applying unique styling and numbering.
+  
+#### Inside the `map` function:
+
+- **`border-l pl-9 relative`**: These classes apply a left border and padding, creating the visual line that connects each step. `relative` is used for positioning the number indicator (`index + 1`).
+- **`clsx`**: Adds the `pb-5` (padding-bottom) class conditionally, but only if the current step (`index`) is not the last one. This ensures that all but the last step have spacing underneath.
+- **`bg-secondary w-8 h-8`**: The circle surrounding the step number is given a secondary background color and sized to be 8x8.
+- **`text-xs font-medium`**: Styles for the text inside the circle, ensuring the step number is centered and legible.
+- **`absolute -left-4`**: Positions the step number to the left of the content, aligning with the vertical line (`border-l`).
+
+---
+
+### Example Usage
+
+To see the `Stepper` in action, wrap your steps like so:
+
+```jsx
+<Stepper>
+  <StepperItem title="Step 1">Content for Step 1</StepperItem>
+  <StepperItem title="Step 2">Content for Step 2</StepperItem>
+  <StepperItem title="Step 3">Content for Step 3</StepperItem>
+</Stepper>
+```
+
+This renders a vertical sequence of numbered steps, with each step wrapped in the `StepperItem` component.
+
+---
+
+### 3. **`StepperItem` Component**
+
+The `StepperItem` acts as a wrapper for individual steps. It receives the step content and an optional title, and applies specific styles to each one.
+
+```js
+export function StepperItem({
+  children,
+  title,
+}: PropsWithChildren & { title?: string }) {
+  return (
+    <div className="pt-0.5">
+      <h4 className="mt-0">{title}</h4>
+      <div>{children}</div>
+    </div>
+  );
+}
+```
+
+- **PropsWithChildren & { title?: string }**: This defines that the component accepts children (the content of the step) and an optional `title` prop.
+  
+#### Inside the `StepperItem` Component:
+
+- **`pt-0.5`**: Adds a small amount of padding to the top of the step to create space between the title and the previous step.
+- **`h4 className="mt-0"`**: The title of the step is rendered in an `h4` element with no top margin (`mt-0`), keeping the spacing consistent.
+- **`{children}`**: The content passed as children (e.g., text, images, or additional components) is rendered beneath the title.
+
+---
+
+### Example Usage for `StepperItem`
+
+A basic example of the `StepperItem` might look like this:
+
+```jsx
+<StepperItem title="Install Dependencies">
+  Run `npm install` to install the necessary packages.
+</StepperItem>
+```
+
+This will render the step with a title "Install Dependencies" and a description saying "Run `npm install` to install the necessary packages."
+
+---
+
+### Final Combined Example
+
+Using both the `Stepper` and `StepperItem` together:
+
+```jsx
+<Stepper>
+  <StepperItem title="Step 1: Initialize Project">
+    Start by running `npm init` to initialize your project.
+  </StepperItem>
+  <StepperItem title="Step 2: Install Dependencies">
+    Run `npm install` to install the necessary packages.
+  </StepperItem>
+  <StepperItem title="Step 3: Start Development">
+    Use `npm start` to begin the development server.
+  </StepperItem>
+</Stepper>
+```
+
+This code will render a vertical stepper with 3 steps, where each step is clearly numbered and titled, and contains a brief description of the step’s content. 
+
+---
+
+### Explanation of Key Concepts
+
+- **Conditional Styling with `clsx` and `cn`**: The combination of `clsx` and `cn` helps manage complex class names. This allows for dynamic styling based on the index and length of the steps, ensuring consistent layout and spacing.
+- **React `Children` API**: The use of `Children.count` and `Children.map` ensures that all child components inside the `Stepper` are correctly handled. This is a powerful method to dynamically generate step content based on the number of children passed into the component.
+- **Modular and Reusable Components**: By separating the `Stepper` and `StepperItem` components, the code becomes more modular and reusable. You can easily add or remove steps without altering the core functionality of the `Stepper`.
+
+This approach is highly flexible, allowing developers to customize the stepper for various use cases, from onboarding flows to installation guides.
