@@ -1,0 +1,118 @@
+---
+title: Custom Collapsible Component
+description: This code defines a set of components to implement a collapsible (expandable) UI element using the Radix UI library (`@radix-ui/react-collapsible`). It offers an easy way to hide or show content, typically used in accordion-like or expandable sections of an application.
+---
+
+Here's a breakdown of how the code works and its key elements:
+
+#### 1. **Imports**:
+```ts
+import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+```
+- The code imports all exports from the `@radix-ui/react-collapsible` library as `CollapsiblePrimitive`. This allows you to use the components provided by the Radix library under a different name or grouped together.
+- Radix UI's Collapsible component provides functionality to show and hide content, useful for creating interactive and user-friendly UI elements.
+
+#### 2. **Collapsible Component**:
+```ts
+const Collapsible = CollapsiblePrimitive.Root;
+```
+- `CollapsiblePrimitive.Root` is assigned to `Collapsible`.
+- This acts as the **root** container for your collapsible element. It provides the logic and accessibility features that handle collapsing and expanding content.
+- This `Collapsible` component should wrap any child components you want to be part of the collapsible section.
+
+#### 3. **CollapsibleTrigger Component**:
+```ts
+const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
+```
+- `CollapsiblePrimitive.CollapsibleTrigger` is mapped to `CollapsibleTrigger`.
+- This component is used to trigger the collapse/expand action. Typically, it's a button or any interactive element that users click to toggle visibility.
+- This trigger is essential for enabling users to interact with the collapsible content.
+
+#### 4. **CollapsibleContent Component**:
+```ts
+const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent;
+```
+- `CollapsiblePrimitive.CollapsibleContent` is assigned to `CollapsibleContent`.
+- This is the section that becomes visible or hidden when the collapsible is toggled. It holds the content that will expand or collapse based on the user's interaction.
+
+#### 5. **Exporting Components**:
+```ts
+export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+```
+- The `Collapsible`, `CollapsibleTrigger`, and `CollapsibleContent` components are exported, allowing you to use them elsewhere in your application.
+
+### How It Works:
+1. **Collapsible Root** (`Collapsible`): 
+   This serves as the wrapper for the collapsible UI. It keeps track of whether the content is open or closed.
+
+2. **Trigger** (`CollapsibleTrigger`): 
+   This is the element that users click to toggle the visibility of the content. Usually, it's a button or a clickable header.
+
+3. **Content** (`CollapsibleContent`): 
+   This contains the actual content that is shown or hidden based on the state of the collapsible. When the state changes, the visibility of this content changes accordingly.
+
+### Basic Example of Usage:
+Here's an example of how you could use these components together:
+
+```tsx
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./Collapsible";
+
+export default function Example() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger>Click to toggle</CollapsibleTrigger>
+      <CollapsibleContent>
+        <p>This is the collapsible content. It can be shown or hidden.</p>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+```
+- **`CollapsibleTrigger`** will be the interactive button that, when clicked, will show or hide the content inside **`CollapsibleContent`**.
+- **`CollapsibleContent`** is initially hidden but will be revealed when the trigger is activated.
+
+### How to Upgrade or Customize
+
+Here are some ideas on how to extend or customize this collapsible implementation:
+
+#### 1. **Customizing the Trigger**:
+- You can replace the default trigger content with more complex elements (like icons or animations):
+  ```tsx
+  <CollapsibleTrigger>
+    <span>Toggle Content</span>
+    <ChevronDown className="ml-2" /> {/* Add an icon */}
+  </CollapsibleTrigger>
+  ```
+
+#### 2. **Animation for Collapsible Content**:
+- Add animations when the content appears or disappears:
+  ```css
+  .collapsible-enter {
+    opacity: 0;
+    transform: scaleY(0);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+
+  .collapsible-enter-active {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  ```
+
+#### 3. **Adding Conditional Behavior**:
+- Use the collapsible in a controlled state where you manage the expanded state with props:
+  ```tsx
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <CollapsibleTrigger>Toggle</CollapsibleTrigger>
+      <CollapsibleContent>
+        <p>This content is now {isOpen ? "open" : "closed"}!</p>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+  ```
+
+#### 4. **Custom Styling**:
+- You can apply additional styling by wrapping these components in custom containers or adding CSS classes via utility libraries like Tailwind CSS.
