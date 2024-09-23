@@ -1,0 +1,108 @@
+---
+title: Custom Scroll-Area Component
+description: Here's a breakdown for a custom `ScrollArea` component in React, utilizing Radix UI's Scroll Area primitives.
+---
+
+### Overview
+
+The `ScrollArea` component is designed to create a scrollable container with customizable scrollbars, enhancing the user experience while maintaining a clean interface.
+
+### Code Breakdown
+
+#### 1. **Imports:**
+```javascript
+import * as React from "react";
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import { cn } from "@/lib/utils";
+```
+- **React**: Used for creating components.
+- **`ScrollAreaPrimitive`**: Provides the base functionality for scroll areas.
+- **`cn`**: A utility function for conditionally merging class names.
+
+#### 2. **ScrollArea Component:**
+```javascript
+const ScrollArea = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
+>(({ className, children, ...props }, ref) => (
+  <ScrollAreaPrimitive.Root
+    ref={ref}
+    className={cn("relative overflow-hidden", className)}
+    {...props}
+  >
+    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+      {children}
+    </ScrollAreaPrimitive.Viewport>
+    <ScrollBar />
+    <ScrollAreaPrimitive.Corner />
+  </ScrollAreaPrimitive.Root>
+));
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+```
+- **Forward Ref**: The `ScrollArea` uses `React.forwardRef` to forward the ref to the root element, allowing parent components to access it.
+- **Props Destructuring**: Accepts `className`, `children`, and other props.
+- **Root Component**: Renders `ScrollAreaPrimitive.Root` with:
+  - **Class Names**: Combines default styles (`relative` and `overflow-hidden`) with any additional `className`.
+  - **Viewport**: A container for the scrollable content, styled to occupy the full height and width.
+  - **ScrollBar**: Includes a custom scrollbar.
+  - **Corner**: For aesthetics, where two scrollbars meet.
+
+#### 3. **ScrollBar Component:**
+```javascript
+const ScrollBar = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
+>(({ className, orientation = "vertical", ...props }, ref) => (
+  <ScrollAreaPrimitive.ScrollAreaScrollbar
+    ref={ref}
+    orientation={orientation}
+    className={cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      className
+    )}
+    {...props}
+  >
+    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border" />
+  </ScrollAreaPrimitive.ScrollAreaScrollbar>
+));
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
+```
+- **Forward Ref**: Similar to `ScrollArea`, this component forwards a ref to the scrollbar element.
+- **Orientation**: Accepts a prop to determine whether the scrollbar is vertical or horizontal.
+- **Class Names**: Dynamically applies styles based on orientation, such as height, width, and border.
+- **Thumb**: A styled thumb (the draggable part of the scrollbar) is included within the scrollbar.
+
+#### 4. **Export:**
+```javascript
+export { ScrollArea, ScrollBar };
+```
+- Exports the `ScrollArea` and `ScrollBar` components for use in other parts of the application.
+
+### Example Usage
+
+Here’s how you might use the `ScrollArea` component:
+
+```tsx
+import { ScrollArea } from "./ScrollArea";
+
+const Example = () => {
+  return (
+    <ScrollArea className="h-64">
+      <div>
+        {/* Content here */}
+      </div>
+    </ScrollArea>
+  );
+};
+```
+
+### Features
+
+1. **Customizable Scrollbars**: The component allows for vertical and horizontal scrollbars, enhancing aesthetics.
+2. **Overflow Handling**: Manages overflow content gracefully within a defined area.
+3. **Accessibility**: Built on Radix UI primitives, ensuring accessibility best practices are followed.
+4. **Flexibility**: Supports passing additional props and class names, making it versatile for different use cases.
+
+This `ScrollArea` component provides a robust and customizable solution for creating scrollable content areas in React applications.
