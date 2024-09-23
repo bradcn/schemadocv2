@@ -1,0 +1,93 @@
+---
+title: Custom Input Component
+description: Here's a breakdown of the provided code for an `Input` component in React, designed to create a customizable input field.
+---
+
+### Overview
+
+The `Input` component wraps a standard HTML input element, allowing for custom styling and additional props while maintaining accessibility.
+
+### Code Breakdown
+
+#### 1. **Imports:**
+```javascript
+import * as React from "react";
+import { cn } from "@/lib/utils";
+```
+- **React**: Used to create components.
+- **`cn` utility**: A function for conditionally merging class names, simplifying styling.
+
+#### 2. **InputProps Interface:**
+```javascript
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+```
+- **InputProps**: This interface extends standard input attributes, allowing any valid HTML input attributes to be passed to the component.
+
+#### 3. **Input Component:**
+```javascript
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+```
+- **React.forwardRef**: Used to forward a ref to the input element, enabling parent components to access the input directly.
+- **Props Destructuring**: The component destructures `className`, `type`, and any additional props.
+- **Input Element**: Renders an `<input>` element with:
+  - **Dynamic Class Names**: Combines default styles with any additional class names passed via `className`.
+  - **Styling Classes**:
+    - **`flex`**: Sets the display to flex.
+    - **`h-10`**, **`w-full`**: Defines the height and width.
+    - **`rounded-md`**: Adds rounded corners.
+    - **`border`**, **`border-input`**: Sets the border styles.
+    - **`bg-background`**: Background color.
+    - **`px-3`, `py-2`**: Padding for the input.
+    - **Placeholder and focus styles**: Includes styles for placeholder text and focus state.
+
+#### 4. **Display Name:**
+```javascript
+Input.displayName = "Input";
+```
+- Sets the display name for the component, useful for debugging and in React DevTools.
+
+#### 5. **Export:**
+```javascript
+export { Input };
+```
+- Exports the `Input` component for use in other parts of the application.
+
+### Example Usage
+
+Here’s how you might use the `Input` component:
+
+```tsx
+import { Input } from "./Input";
+
+const Form = () => {
+  return (
+    <form>
+      <Input type="text" placeholder="Enter your name" className="my-2" />
+      <Input type="email" placeholder="Enter your email" />
+    </form>
+  );
+};
+```
+
+### Features
+
+1. **Custom Styling**: Users can easily add custom styles through the `className` prop.
+2. **Accessibility**: Since it extends standard HTML attributes, it maintains all inherent accessibility features.
+3. **Flexibility**: Accepts all standard input props, allowing it to be used in various contexts (text, password, email, etc.).
+
+This `Input` component provides a flexible and customizable input field that can be easily integrated into any React application.
