@@ -1,0 +1,184 @@
+---
+title: Custom Table Component
+description: This module provides a collection of React components to construct flexible and customizable tables with clean, reusable code. It leverages `React.forwardRef` to allow better control over DOM elements and the utility function `cn` for conditional class name handling, promoting clean and dynamic styling across components. These components aim to simplify table creation while providing flexibility for customization. Below is a detailed breakdown of each component:
+---
+
+### Table Component
+
+The `Table` component is the main container for creating a table layout. It wraps a standard HTML `<table>` inside a `div`, which ensures responsive design with horizontal scrollability when necessary. This is particularly useful when working with large tables that may not fit the viewport. The `Table` component accepts additional props such as `className`, allowing custom styles to be applied via Tailwind CSS or other class names. 
+
+It forwards the `ref` to the `<table>` element, making it possible to directly interact with the table using React refs (e.g., for DOM manipulation or focusing).
+
+**Key Points:**
+- Provides a responsive container for the table.
+- Accepts and applies custom class names.
+- Forwards `ref` to the `<table>` for additional DOM control.
+
+**Example Usage:**
+```jsx 
+<Table className="custom-class">
+  {/* Table Content */}
+</Table>
+```
+
+---
+
+### TableHeader Component
+
+The `TableHeader` component represents the table header (`<thead>`) section, containing header rows (`<tr>`). It forwards the `ref` to the `thead` element, allowing it to be referenced for DOM manipulation. Additionally, it adds a bottom border to each row (`tr`) by default, ensuring a clear visual separation between the table's header and body.
+
+The `className` prop enables further customization, making it easy to style the header differently, such as applying background colors, text formatting, or borders.
+
+**Key Points:**
+- Wraps the `<thead>` element.
+- Provides automatic bottom borders for header rows.
+- Allows full customization via the `className` prop.
+
+**Example Usage:**
+```jsx
+<TableHeader>
+  <tr>
+    <TableHead>Header 1</TableHead>
+    <TableHead>Header 2</TableHead>
+  </tr>
+</TableHeader>
+```
+
+---
+
+### TableBody Component
+
+The `TableBody` component serves as a wrapper for the table's body (`<tbody>`), where the actual data rows are located. Like the other components, it forwards the `ref` to the DOM element and accepts the `className` for applying custom styles.
+
+An important feature of this component is that it ensures the last row does not have a bottom border, making the table look cleaner by preventing unnecessary visual breaks at the end.
+
+**Key Points:**
+- Wraps the `<tbody>` element.
+- Automatically removes the bottom border from the last row.
+- Forwards the `ref` and allows for custom styling via `className`.
+
+**Example Usage:**
+```jsx
+<TableBody>
+  <TableRow>
+    <TableCell>Data 1</TableCell>
+    <TableCell>Data 2</TableCell>
+  </TableRow>
+</TableBody>
+```
+
+---
+
+### TableFooter Component
+
+The `TableFooter` component is a wrapper for the `<tfoot>` element, where summary or aggregate information is typically displayed. It adds a top border to visually separate the footer from the table body and applies a muted background for distinction. The last row in the footer is styled to ensure it doesn’t have a bottom border, keeping the design clean.
+
+It allows customization with the `className` prop, enabling further control over the footer's look, such as adjusting font size, weight, or alignment.
+
+**Key Points:**
+- Wraps the `<tfoot>` element.
+- Adds a top border and muted background.
+- Ensures a clean design by removing the bottom border of the last row.
+
+**Example Usage:**
+```jsx
+<TableFooter>
+  <tr>
+    <TableCell>Footer Data 1</TableCell>
+    <TableCell>Footer Data 2</TableCell>
+  </tr>
+</TableFooter>
+```
+
+---
+
+### TableRow Component
+
+The `TableRow` component is designed to encapsulate individual rows (`<tr>`) within the table. It supports hover effects, row transitions, and styling based on a "selected" state, enhancing the user experience when interacting with the table.
+
+This component allows custom styles via the `className` prop, providing flexibility in how the rows appear. It forwards the `ref`, making it possible to directly interact with the rows (e.g., applying styles or events based on user interaction).
+
+**Key Points:**
+- Wraps the `<tr>` element.
+- Supports hover effects and selected states.
+- Forwards `ref` and accepts custom styles through `className`.
+
+**Example Usage:**
+```jsx
+<TableRow>
+  <TableCell>Row Data 1</TableCell>
+  <TableCell>Row Data 2</TableCell>
+</TableRow>
+```
+
+---
+
+### TableHead Component
+
+The `TableHead` component wraps the `<th>` element, representing individual header cells. It provides default styles like left-aligned text, medium font weight, and padding, ensuring consistency across table headers. It also includes special handling for checkbox elements, adjusting the padding when necessary.
+
+Like the other components, it accepts the `className` prop for additional customization and forwards the `ref` to the `th` element for direct DOM manipulation.
+
+**Key Points:**
+- Wraps the `<th>` element.
+- Provides default styles for header cells.
+- Supports customization and DOM interaction through `className` and `ref`.
+
+**Example Usage:**
+```jsx
+<TableHead>Header Name</TableHead>
+```
+
+---
+
+### TableCell Component
+
+The `TableCell` component is a wrapper for individual data cells (`<td>`). It ensures proper alignment and padding, with special handling for elements that have a role of checkbox. The component forwards the `ref` to the `td` element and allows custom styles via the `className` prop.
+
+**Key Points:**
+- Wraps the `<td>` element.
+- Ensures proper alignment and padding for data cells.
+- Supports customization and forwarding of `ref` for DOM interaction.
+
+**Example Usage:**
+```jsx
+<TableCell>Cell Data</TableCell>
+```
+
+---
+
+### TableCaption Component
+
+The `TableCaption` component represents the table's caption, which usually provides a title or description for the table. It applies a muted foreground color and some margin for spacing. The `TableCaption` accepts the `className` prop for custom styling and forwards the `ref` for interaction.
+
+**Key Points:**
+- Wraps the `<caption>` element.
+- Provides default styles, including muted text and margin.
+- Allows for further customization and DOM interaction.
+
+**Example Usage:**
+```jsx
+<TableCaption>This is a table caption</TableCaption>
+```
+
+---
+
+### Exported Components
+
+All components (`Table`, `TableHeader`, `TableBody`, `TableFooter`, `TableHead`, `TableRow`, `TableCell`, `TableCaption`) are exported, allowing for flexible table creation. Each component can be used independently or in combination to create a fully customizable table structure.
+
+**Example Usage:**
+```js
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from "@/components/table";
+```
+
+This approach provides a highly customizable and reusable set of components that can be integrated into any React project. By forwarding refs and accepting class names, the design and functionality remain flexible, making these components adaptable for various use cases.
