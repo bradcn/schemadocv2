@@ -53,8 +53,8 @@ export const NAVLINKS: NavLink[] = [
     external: false,
   },
   {
-    title: "LISA Org.",
-    href: "https://lisaorg.vercel.app/",
+    title: "Bradcn Inc.",
+    href: "https://bradcn.vercel.app/",
     external: true,
   },
 ];
